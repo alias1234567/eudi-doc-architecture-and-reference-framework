@@ -1076,27 +1076,21 @@ B. *General requirements for the issuance of access certificates*
 | Reg_13 | The common Certificate Policy mentioned in Reg_12 SHALL require that an Access Certificate Authority logs all issued certificates for Certificate Transparency (CT). *Note: This requirement is still under discussion and might be changed or removed in a future version of this ARF.* |
 | Reg_14 | The common Certificate Policy mentioned in Reg_12 SHALL require that an Access Certificate Authority provides one or more method(s) to revoke the access certificates it issued. |
 | Reg_15 | The common Certificate Policy mentioned in Reg_12 SHALL include a policy for revocation, which SHALL require that an Access Certificate Authority revokes an access certificate at least when: - the certificate subject which is a Relying Party is de-registered by the respective Registrar, - the certificate subject which is a PID Provider, QEAA Provider, PuB-EAA Provider, or non-qualified EAA Provider is withdrawn or suspended by the respective Registrar, - on request of the certificate subject, or - on request of a competent national authority. |
+| Reg_15b | The common Certificate Policy mentioned in Reg_12 SHALL include a policy for Relying Party Instance-specific revocation, which SHALL require that an Access Certificate Authority revokes one or more of the access certificates of the certificate subject at least when: 
+- the corresponding Relying Party Instance is cancelled by the respective Registrar, 
+- on request of the certificate subject, or 
+- on request of a national supervisory body. 
+Note: This policy is required for needs of executing partial revocation of access certificates, e.g. for situations when a Relying Party has issues not reaching to all of its instances.
+ according to dicussion Topic X.|
 | Reg_16 | The common Certificate Policy mentioned in Reg_12 SHALL specify the profile of access certificates in detail. |
-| Reg_17 | The common Certificate Policy mentioned in Reg_12 SHALL require that an access certificate indicates whether its subject is a PID Provider, a QEAA Provider, a PuB-EAA Provider, a non-qualified EAA Provider, or a Relying Party Instance. |
+| Reg_17 | Deleted - according to dicussion Topic X. |
 | Reg_18 | The common Certificate Policy mentioned in Reg_12 SHALL define the minimum change history information to be stored for resolving possible disputes regarding registration. |
 
 C. *Requirements for the registration of PID Providers*
-
-| **Index** | **Requirement specification** |
-|-----------|---------------------|
-| Reg_19 | A Member State SHALL approve a PID Provider according to a well-defined policy before including it in its PID Provider Registry. To that end, a Member State SHALL define specific vetting processes and rules of acceptance for inclusion of PID Providers in its Registry. |
-| Reg_20 | A Member State SHALL identify PID Providers at a level of confidence proportionate to the risk arising from the potential harm a fraudulent PID Provider could cause to Users and other stakeholders in the EUDI Wallet ecosystem. |
-| Reg_20a | A Registrar SHALL provide a method to suspend or withdraw a registered PID Provider. |
-| Reg_20b | A Registrar SHALL have a policy for the suspension or withdrawal of a registered PID Provider, which SHALL specify that a PID Provider is suspended or withdrawn at least on request of the PID Provider or of a competent national authority. |
+Deleted according to discussion Topic X.
 
 D. *Requirements for the registration of Attestation Providers*
-
-| **Index** | **Requirement specification** |
-|-----------|-------------------|
-| Reg_21 | A Member State SHALL approve an Attestation Provider according to a well-defined policy before including it in its Attestation Provider Registry. To that end, a Member State SHALL define specific vetting processes and rules of acceptance for inclusion of Attestation Providers in its Registry. These processes and rules SHOULD consider any relevant differences between QEAA Providers, PuB-EAA Providers, and non-qualified EAA Providers. |
-| Reg_22 | A Member State SHALL identify Attestation Providers (i.e., QEAA Providers, PuB-EAA Providers and non-qualified EAA Providers) at a level of confidence proportionate to the risk arising from the potential harm a fraudulent Attestation Provider could cause to Users and other stakeholders in the EUDI Wallet ecosystem. |
-| Reg_22a | A Registrar SHALL provide a method to suspend or withdraw a registered Attestation Provider. |
-| Reg_22b | A Registrar SHALL have a policy for the suspension or withdrawal of a registered Attestation Provider, which SHALL specify that an Attestation Provider is suspended or withdrawn at least on request of the PID Provider or of a competent national authority. |
+Deleted according to discussion Topic X.
 
 E. *Requirements for the registration of Relying Parties*
 
@@ -1104,19 +1098,23 @@ E. *Requirements for the registration of Relying Parties*
 |-----------|------------------|
 | Reg_23 | The Commission SHALL establish a technical specification for a common set of Relying Party information to be registered in Member State registries. This set SHALL include at least the information defined in [European Digital Identity Regulation] [article 5b](https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32024R1183#d1e1776-1-1) 2 (c). |
 | Reg_24 | A Member State SHALL enable a Relying Party to register remotely, using an API or user interface. |
-| Reg_25 | A Member State SHALL identify a Relying Party at a level of confidence proportionate to the risk arising from the potential harm a fraudulent Relying Party could cause to Users and other stakeholders in the EUDI Wallet ecosystem. |
+| Reg_25 | Deleted. -according to discussion Topic X  |
 | Reg_26 | A Member State SHALL enable a Relying Party to update the information registered on it using a process comparable to the original registration process, and using the API or user interface mentioned in Reg_24. |
 | Reg_27 | Relying Parties SHALL make any updates necessary to ensure the continued correctness of the registered information without undue delay. |
 | Reg_28 | A Member State's Registry SHALL log all changes made on the information regarding a Relying Party, including at least initial registration, updates, deletion of information, and suspension or withdrawal. |
 | Reg_29 | A Registrar SHALL have a policy for the withdrawal of a registered Relying Party, which SHALL specify that a Relying Party is withdrawn at least on request of the Relying Party or of a competent national authority. |
-| Reg_30 | Empty |
+| Reg_30 | During registration, the Relying Party SHALL be provided both JWT and CWT format registration certificates by the Registrar. 
+Note: This gives the Relying Party freedom to provide their intended use for both remote and proximity use cases, as necessary - without requesting use case implementation approach upon the registration event.
+- according to discussion Topic X |
 
 F. *Requirements for the issuance of Relying Party Instance access certificates*
 
 | **Index** | **Requirement specification** |
 |-----------|---------------------|
-| Reg_31 | The common Certificate Policy mentioned in Reg_12 SHALL require that a Relying Party Instance access certificate contains a name for the Relying Party, in a format suitable for presenting to a User. *Note: A Wallet Unit needs such a name when requesting User approval according to [[Topic 6](#a236-topic-6---relying-party-authentication-and-user-approval)].* |
-| Reg_32 | The common Certificate Policy mentioned in Reg_12 SHALL require that a Relying Party Instance access certificate contains an EU-wide unique identifier for the Relying Party, and SHALL specify a method for deriving such identifiers. *Notes: - The Wallet Instance needs such an identifier at least to lodge a complaint of suspicious Relying Party presentation requests to a data protection authority according to [Topic 50](#a2350-topic-50---blueprint-to-report-unlawful-or-suspicious-request-of-data). - The EU-wide unique identifier could, for example, be a composition of a unique identifier of the registrar, defined in the policy, and a unique identifier for the Relying Party allocated by this registrar. - This Relying Party identifier is identical in all Relying Party Instance access certificates issued to a given Relying Party.* |
+| Reg_31 | Moved modified HLR text under Topic 44 (new RPRC_03a). -according to discussion Topic X |
+| Reg_32 | Moved modified HLR text under Topic 44 (new RPRC_03b). -according to discussion Topic X |
+| Reg_33 |All Relying Party Instance access certificates of a Relying Party SHALL include the user-friendly (common) name of Relying Party service and unique identifier identical to the ones defined in requirements RPRC_03a and RPRC_03b, respectively. -according to discussion Topic X |
+
 
 #### A.2.3.28 Topic 28 - Wallet Unit for legal persons
 
